@@ -14,8 +14,47 @@
         .ui.message {
             width: 600px;
         }
+
+
+        #offline.ui.red.message {
+            background-color: #ffe8e6;
+            color: #db2828;
+            -webkit-box-shadow: 0 0 0 1px #db2828 inset, 0 0 0 0 transparent;
+            box-shadow: 0 0 0 1px #db2828 inset, 0 0 0 0 transparent;
+        }
+
+        #offline.ui.message:first-child {
+            margin-top: 0;
+        }
+
+        #offline.ui.message {
+            font-size: 1em;
+        }
+
+        #offline.ui.message {
+            position: relative;
+            min-height: 1em;
+            margin: 1em 0;
+            background: #f8f8f9;
+            padding: 1em 1.5em;
+            line-height: 1.4285em;
+            color: rgba(0, 0, 0, .87);
+            -webkit-transition: opacity .1s ease, color .1s ease, background .1s ease, -webkit-box-shadow .1s ease;
+            transition: opacity .1s ease, color .1s ease, background .1s ease, -webkit-box-shadow .1s ease;
+            transition: opacity .1s ease, color .1s ease, background .1s ease, box-shadow .1s ease;
+            transition: opacity .1s ease, color .1s ease, background .1s ease, box-shadow .1s ease, -webkit-box-shadow .1s ease;
+            border-radius: .28571429rem;
+            -webkit-box-shadow: 0 0 0 1px rgb(34 36 38 / 22%) inset, 0 0 0 0 transparent;
+            box-shadow: 0 0 0 1px rgb(34 36 38 / 22%) inset, 0 0 0 0 transparent;
+        }
     </style>
     <script>
+        var JqueryLoaded = false;
+        var SemanticLoaded = false;
+        JqueryLoaded = window.jQuery ? true : false;
+
+
+
         function goToTab(tab) {
             $('.menu .item').tab(
                 'change tab', 'second'
@@ -23,6 +62,7 @@
 
             $('.accordion').accordion('open', 3);
         }
+
     </script>
 </head>
 
@@ -45,6 +85,13 @@
                             <div id="rxrcs">
                                 <h3>REX Rocks !!!</h3>
                                 <div>
+                                    <div id="offline" class="ui red message">
+                                        <div class="header">
+                                            WARNING!
+                                        </div>
+                                        Please check your internet connection and refresh. Reading experience may not be so good in
+                                        offline mode.
+                                    </div>
                                     <div class="ui warning message">
                                         <div class="header">
                                             NOTE!
@@ -648,6 +695,13 @@
 
 </body>
 <script>
+
+
+    if (!JqueryLoaded) {
+        document.getElementById('offline').hidden = false;
+    } else {
+        document.getElementById('offline').hidden = true;
+    }
     $('.menu .item').tab();
     $('.accordion').accordion();
 </script>
